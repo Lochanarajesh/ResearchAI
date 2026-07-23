@@ -1,9 +1,9 @@
-# Evaluation of ResearchGPT Strategies
+# Evaluation of ResearchAI Strategies
 
 This document presents an evaluation comparing our distinct chunking and retrieval strategies.
 
 ## Overview
-We built ResearchGPT and provided configurable chunking and retrieval strategies. To properly evaluate the RAG pipeline, we queried 10 unique topics across multiple PDF documents and reviewed the responses.
+We built ResearchAI and provided configurable chunking and retrieval strategies. To properly evaluate the RAG pipeline, we queried 10 unique topics across multiple PDF documents and reviewed the responses.
 
 ### Chunking Strategies
 - **Strategy A (size = 1000, overlap = 200)**: This granularity isolates specific topics and yields smaller but very focused context blocks.
@@ -73,4 +73,4 @@ As part of our architectural validation, we built a UI toggle allowing instant s
 - **For heavily technical or scattered contexts**: Use **Strategy B + MMR**.
 - **For direct empirical lookups (like definitions or exact constants)**: Use **Strategy A + Similarity** for the quickest and most precise focus.
 
-*ResearchGPT satisfies the ability to evaluate these strategies actively in the application's sidebar.*
+*ResearchAI satisfies the ability to evaluate these strategies actively in the application's sidebar.*

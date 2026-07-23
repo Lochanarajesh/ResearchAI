@@ -1,7 +1,7 @@
-# ResearchGPT - Project Architecture & Documentation
+# ResearchAI - Project Architecture & Documentation
 
 ## Overview
-**ResearchGPT** is a Retrieval-Augmented Generation (RAG) system built to allow users to interact intelligently with complex PDF research papers. By combining local vector search with advanced Large Language Models (LLMs), it can accurately answer user queries based *strictly* on the uploaded documents, drastically reducing hallucinations. It also features a transparent citation system that allows users to verify answers against the original PDF pages.
+**ResearchAI** is a Retrieval-Augmented Generation (RAG) system built to allow users to interact intelligently with complex PDF research papers. By combining local vector search with advanced Large Language Models (LLMs), it can accurately answer user queries based *strictly* on the uploaded documents, drastically reducing hallucinations. It also features a transparent citation system that allows users to verify answers against the original PDF pages.
 
 ---
 

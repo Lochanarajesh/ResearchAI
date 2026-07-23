@@ -31,7 +31,7 @@ def get_rag_chain(api_key: str, model_name: str = "gemini-3.1-flash-lite-preview
     
     # Custom rules for explanation and external knowledge
     system_prompt = (
-        "You are 'ResearchGPT', an AI assistant designed to answer questions based on the provided research context.\n"
+        "You are 'ResearchAI', an AI assistant designed to answer questions based on the provided research context.\n"
         "Instructions:\n"
         "1. Primarily use the provided context to answer the user's questions.\n"
         "2. If the question is out of the pdf or the context does not contain the answer, you MUST respond EXACTLY with 'I don't know'. Do not provide any answer for that question.\n"
@@ -62,38 +62,16 @@ def generate_answer(query: str, retriever, api_key: str, model_name: str = "gemi
     if not api_key:
         raise ValueError("Google Gemini API Key is missing.")
         
-    # 1. Rephrase query based on chat history to get accurate search results
     search_query = query
     lc_messages = []
     
-    if chat_history and len(chat_history) > 1: # More than just the current user message
-        # Convert local chat_history dicts to Langchain Message objects
-        for msg in chat_history[:-1]: # Exclude the current query which is the last item
+    if chat_history and len(chat_history) > 1:
+        for msg in chat_history[:-1]:
             if msg["role"] == "user":
                 lc_messages.append(HumanMessage(content=msg["content"]))
             elif msg["role"] == "assistant":
                 lc_messages.append(AIMessage(content=msg["content"]))
                 
-        # Fast standalone query generator is skipped here to improve response time by 2x
-        # llm = ChatGoogleGenerativeAI(model="gemini-3.1-flash-lite-preview", google_api_key=api_key, temperature=0)
-        # rephrase_prompt = f"Given the following conversation history, rephrase the user's latest query to be a standalone search query that contains all necessary context from previous turns. If it is already standalone, do not change it. Only output the rephrased query string.\n\nLATEST QUERY: {query}"
-        
-        # Append history to prompt manually for the standalone generation
-        # recent_history = chat_history[-5:-1]
-        # history_str = ""
-        # for m in recent_history:
-        #     # Take the beginning of the message to capture the subject being discussed
-        #     content_snippet = m['content'][:600].replace('\n', ' ')
-        #     history_str += f"{m['role'].upper()}: {content_snippet}\n"
-            
-        # full_rephrase_prompt = f"HISTORY:\n{history_str}\n\n" + rephrase_prompt
-        
-        # try:
-        #     search_query = llm.invoke([HumanMessage(content=full_rephrase_prompt)]).content.strip()
-        #     print(f"Standalone Search Query: {search_query}")
-        # except Exception as e:
-        #     print(f"Error rephrasing query: {e}")
-            
     # 2. Retrieve Context using Standalone Query
     retrieved_docs = retriever.invoke(search_query)
     
@@ -104,7 +82,7 @@ def generate_answer(query: str, retriever, api_key: str, model_name: str = "gemi
     chain = get_rag_chain(api_key, model_name)
     answer = chain.invoke({
         "context": context_str,
-        "chat_history": lc_messages, # Passed into MessagesPlaceholder
+        "chat_history": lc_messages,
         "question": query
     })
     

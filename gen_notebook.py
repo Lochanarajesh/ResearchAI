@@ -6,9 +6,9 @@ cells = [
         "cell_type": "markdown",
         "metadata": {},
         "source": [
-            "# 📄 ResearchGPT: Capstone Project\n",
+            "# 📄 ResearchAI: Capstone Project\n",
             "**Subtitle**: Local Retrieval-Augmented Generation (RAG) System for Complex PDF Research Papers\n\n",
-            "This notebook documents the fully implemented, end-to-end architecture and evaluation of the ResearchGPT project. It runs the entire pipeline from document ingestion to the final generated response with citations."
+            "This notebook documents the fully implemented, end-to-end architecture and evaluation of the ResearchAI project. It runs the entire pipeline from document ingestion to the final generated response with citations."
         ]
     },
     {
@@ -65,7 +65,7 @@ cells = [
         "outputs": [],
         "source": [
             "# Load a sample PDF from our uploads directory\n",
-            "sample_pdf = \"pdf_uploads/2410.15944v1.pdf\"\n\n",
+            "sample_pdf = \"pdf_uploads/RAG.pdf\"\n\n",
             "print(f\"Loading document: {sample_pdf}\")\n",
             "docs = load_documents_from_paths([sample_pdf], api_key=api_key, extract_images=False)\n",
             "print(f\"Loaded {len(docs)} pages.\")"
@@ -212,5 +212,5 @@ notebook = {
     "nbformat_minor": 5
 }
 
-with open('ResearchGPT_Capstone.ipynb', 'w', encoding='utf-8') as f:
+with open('ResearchAI_Capstone.ipynb', 'w', encoding='utf-8') as f:
     json.dump(notebook, f, indent=2)

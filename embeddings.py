@@ -3,7 +3,10 @@ import warnings
 
 # Suppress warnings (e.g., Pydantic, tokenizers, USER_AGENT)
 warnings.filterwarnings("ignore")
-os.environ["USER_AGENT"] = "ResearchGPT"
+os.environ["USER_AGENT"] = "ResearchAI"
+
+# Disable Xet optimized storage to avoid OSError on model download
+os.environ["HF_HUB_DISABLE_XET"] = "1"
 
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
