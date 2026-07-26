@@ -92,7 +92,7 @@ python -m streamlit run app.py
 ```
 
 ## 📸 Demo Screenshot
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a12238f7-a875-4307-8079-de586398b385" />
+<img width="1598" height="808" alt="image" src="https://github.com/user-attachments/assets/69e0ae78-a376-426a-a695-b9a629168383" />
 
 
 
